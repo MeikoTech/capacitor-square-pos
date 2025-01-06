@@ -1,6 +1,6 @@
 {
   "name": "@meikotech/capacitor-square-pos",
-  "version": "1.2.22",
+  "version": "1.2.24",
   "description": "Integrate with Square Payments SDK for capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
