@@ -1,21 +1,19 @@
-package com.dolaned.capacitor.square;
+package com.meikotech.capacitor.square;
 
 import android.content.Context;
 import android.content.Intent;
-
 import androidx.annotation.Nullable;
-
 import com.squareup.sdk.pos.ChargeRequest;
 import com.squareup.sdk.pos.CurrencyCode;
 import com.squareup.sdk.pos.PosApi;
 import com.squareup.sdk.pos.PosClient;
 import com.squareup.sdk.pos.PosSdk;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CapacitorSquare {
+
     private static PosClient posClient = null;
 
     public void initApp(String applicationId, Context context) {
@@ -40,7 +38,7 @@ public class CapacitorSquare {
     public ArrayList<ChargeRequest.TenderType> parsePaymentMethods(List allowedPaymentMethods) throws Exception {
         ArrayList<ChargeRequest.TenderType> restrictPaymentMethods = new ArrayList<>();
         if (!allowedPaymentMethods.contains("ALL")) {
-            for (Object i: allowedPaymentMethods) {
+            for (Object i : allowedPaymentMethods) {
                 try {
                     ChargeRequest.TenderType tenderType = ChargeRequest.TenderType.valueOf(i.toString());
                     restrictPaymentMethods.add(tenderType);
@@ -54,23 +52,24 @@ public class CapacitorSquare {
     }
 
     public Intent createChargeIntent(
-            Integer totalAmount,
-            CurrencyCode currencyCode,
-            ArrayList<ChargeRequest.TenderType> restrictPaymentMethods,
-            @Nullable Integer autoReturnTimeout,
-            @Nullable String locationId,
-            @Nullable String note) {
+        Integer totalAmount,
+        CurrencyCode currencyCode,
+        ArrayList<ChargeRequest.TenderType> restrictPaymentMethods,
+        @Nullable Integer autoReturnTimeout,
+        @Nullable String locationId,
+        @Nullable String note
+    ) {
         ChargeRequest.Builder request = new ChargeRequest.Builder(totalAmount, currencyCode);
 
         if (!restrictPaymentMethods.isEmpty()) {
             request.restrictTendersTo(restrictPaymentMethods);
         }
 
-        if(locationId != null) {
+        if (locationId != null) {
             request.enforceBusinessLocation(locationId);
         }
 
-        if(note != null) {
+        if (note != null) {
             request.note(note);
         }
 

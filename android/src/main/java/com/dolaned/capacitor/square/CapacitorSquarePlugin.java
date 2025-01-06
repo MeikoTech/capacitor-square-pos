@@ -1,12 +1,10 @@
-package com.dolaned.capacitor.square;
+package com.meikotech.capacitor.square;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-
 import androidx.activity.result.ActivityResult;
-
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
@@ -17,11 +15,9 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 import com.squareup.sdk.pos.ChargeRequest;
 import com.squareup.sdk.pos.CurrencyCode;
 import com.squareup.sdk.pos.PosApi;
-
-import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONException;
 
 @CapacitorPlugin(name = "CapacitorSquare")
 public class CapacitorSquarePlugin extends Plugin {
@@ -31,7 +27,7 @@ public class CapacitorSquarePlugin extends Plugin {
     @PluginMethod
     public void initApp(PluginCall call) {
         String applicationId = call.getString("applicationId");
-        if(applicationId == null || applicationId.length() == 0) {
+        if (applicationId == null || applicationId.length() == 0) {
             call.reject("applicationId null");
             return;
         }
@@ -44,7 +40,7 @@ public class CapacitorSquarePlugin extends Plugin {
         call.success(data);
     }
 
-    @PluginMethod()
+    @PluginMethod
     public void startTransaction(PluginCall call) {
         if (!implementation.isInitalised()) {
             call.reject("client not setup, call initApp first");
@@ -121,12 +117,13 @@ public class CapacitorSquarePlugin extends Plugin {
 
         try {
             Intent intent = implementation.createChargeIntent(
-                    totalAmount,
-                    currencyCode,
-                    restrictPaymentMethods,
-                    autoReturnTimeout,
-                    locationId,
-                    note);
+                totalAmount,
+                currencyCode,
+                restrictPaymentMethods,
+                autoReturnTimeout,
+                locationId,
+                note
+            );
             startActivityForResult(call, intent, "chargeRequest");
         } catch (ActivityNotFoundException e) {
             implementation.openPointOfSalePlayStoreListing();
