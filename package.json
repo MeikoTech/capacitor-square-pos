@@ -1,6 +1,6 @@
 {
   "name": "@meikotech/capacitor-square-pos",
-  "version": "1.2.2",
+  "version": "1.2.22",
   "description": "Integrate with Square Payments SDK for capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dolaned/capacitor-square.git"
+    "url": "git+https://github.com/MeikoTech/capacitor-square-pos"
   },
   "bugs": {
-    "url": "https://github.com/dolaned/capacitor-square/issues"
+    "url": "https://github.com/MeikoTech/capacitor-square-posissues"
   },
   "keywords": [
     "capacitor",
@@ -75,7 +75,7 @@
       "src": "android"
     }
   },
-  "homepage": "https://github.com/dolaned/capacitor-square#readme",
+  "homepage": "https://github.com/MeikoTech/capacitor-square-pos#readme",
   "dependencies": {
     "acorn": "^7.4.1",
     "acorn-jsx": "^5.3.2",
